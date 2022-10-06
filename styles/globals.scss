@@ -1,0 +1,303 @@
+/* ******* Variables ******* */
+$primary: #fca311;
+$secondary: #008dd5;
+$secondary: #38369a;
+$secondary: #5863f8;
+
+$white-color: #fff;
+$gray-color: #e5e5e5;
+$black-color: #000;
+$font: 'Poppins', sans-serif;
+$header-height: 4rem;
+
+/* ******* Reset ******* */
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: $font;
+  overflow-x: hidden;
+  background-color: $black-color;
+  color: $primary;
+}
+
+a {
+  text-decoration: none;
+  transition: color 300ms ease-in-out;
+  &:hover {
+    color: $secondary;
+  }
+}
+
+footer {
+  background-color: $black-color;
+  color: $white-color;
+}
+
+h2,
+h4,
+h5 {
+  margin: 0;
+}
+
+img {
+  object-fit: cover;
+}
+
+input {
+  padding: 0.5rem;
+  border: 0;
+  outline: none;
+  border-bottom: 1px solid $black-color;
+
+  &:focus {
+    border-bottom: 1px solid $secondary;
+  }
+}
+
+label {
+  padding: 1rem 0.5rem;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background-color: $black-color;
+  z-index: 100;
+
+  .nav {
+    // padding: 0.5rem;
+    height: $header-height;
+  }
+}
+
+section {
+  padding: 4.2rem 1rem;
+  min-height: 100vh;
+}
+
+textarea {
+  outline: none;
+  padding: 0.5rem;
+  border: 0;
+  resize: none;
+  border-bottom: 1px solid $black-color;
+
+  &:focus {
+    border-bottom: 1px solid $secondary;
+  }
+}
+
+p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.btn {
+  padding: 0.7rem 1rem;
+  transition: 300ms ease-in;
+  color: $white-color;
+  background-color: $primary;
+  border: 0;
+
+  &.btn-contact {
+    & a {
+      color: $white-color;
+    }
+    background-image: linear-gradient(
+      to right,
+      $primary 0%,
+      $secondary 51%,
+      $primary 100%
+    );
+    background-size: 200% auto;
+    border-radius: 10px;
+    display: block;
+    &:hover {
+      color: $white-color;
+      background-position: right center;
+    }
+  }
+
+  &.btn-projects:hover {
+    color: $white-color;
+    background-color: $secondary;
+  }
+
+  &[type='submit'] {
+    width: 10rem;
+    &:hover {
+      color: $white-color;
+      background-color: $secondary;
+    }
+  }
+}
+
+.devicon {
+  color: $primary;
+  font-size: 4rem;
+}
+
+.form-text,
+.form-email {
+  color: $primary;
+  font-size: 1.5rem;
+}
+
+.icon {
+  color: $primary;
+  cursor: pointer;
+  font-size: 1.8rem;
+}
+
+.icons-grid {
+  display: grid;
+  gap: 1.5rem;
+  place-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+}
+
+.logo {
+  cursor: pointer;
+  color: $white-color;
+  transition: color 300ms ease-in-out;
+  &:hover {
+    color: $primary;
+  }
+}
+
+.nav-links .link {
+  cursor: pointer;
+  color: $white-color;
+  font-size: 1.2rem;
+  &:hover {
+    color: $primary;
+  }
+}
+
+.project-image {
+  z-index: 10;
+}
+
+.project-name::after {
+  content: '';
+  display: inline-block;
+  border-bottom: 2px solid $secondary;
+  width: 4rem;
+  top: 50%;
+  position: absolute;
+  margin-left: 1rem;
+}
+
+.subtitle {
+  color: $primary;
+}
+
+.title {
+  &::after {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    content: '';
+    display: block;
+    border-bottom: 3px solid $secondary;
+    width: 4rem;
+  }
+}
+
+.technologies {
+  color: $secondary;
+}
+
+@media screen and (max-width: 576px) {
+  section {
+    padding: 1rem;
+  }
+}
+
+/* ******* HAMBURGER MENU ******* */
+.hamburger {
+  position: fixed;
+  bottom: 2vh;
+  right: 4vw;
+  width: 3rem;
+  cursor: pointer;
+  appearance: none;
+  background: none;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  z-index: 999;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.hamburger .bar,
+.hamburger:after,
+.hamburger:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 5px;
+  background-color: $primary;
+  margin: 6px 0px;
+  transition: 400ms;
+}
+
+.hamburger.is-active:before {
+  transform: rotate(-45deg) translate(-8px, 6px);
+}
+
+.hamburger.is-active:after {
+  transform: rotate(45deg) translate(-9px, -8px);
+}
+
+.hamburger.is-active .bar {
+  opacity: 0;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 899;
+  background-color: $secondary;
+  opacity: 0;
+  transition: opacity, transform 400ms ease;
+  transition: all 400ms ease;
+  transform: translateX(100%);
+  pointer-events: none;
+
+  &.is-active {
+    transform: translateX(0);
+    pointer-events: all;
+    opacity: 1;
+  }
+
+  a {
+    font-size: 2rem;
+    color: $white-color;
+    &:hover {
+      color: $primary;
+    }
+  }
+}
