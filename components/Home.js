@@ -1,19 +1,25 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { AiOutlineLinkedin, AiOutlineGithub } from 'react-icons/ai';
+import { BsMoonFill, BsSunFill } from 'react-icons/bs';
+import { Link as ScrollLink } from 'react-scroll';
+import { motion } from 'framer-motion';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Home = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const { darkTheme, toggleDarkTheme } = useContext(ThemeContext);
   return (
     <section className="container mx-auto row p-0">
-      <div className="d-flex justify-content-center align-items-lg-start align-items-center text-lg-left text-center flex-column">
-        <h1 className="mb-3">
-          Ignacio Altamirano
-          {/* <br />
-          {' < Front End Developer / >'} */}
-        </h1>
+      <motion.div
+        initial={{ opacity: 0, x: '-100vw' }}
+        animate={{ opacity: 1, x: '0' }}
+        transition={{ type: 'spring', duration: 0.4, bounce: 0.4 }}
+        className="d-flex justify-content-center align-items-lg-start align-items-center text-lg-left text-center flex-column"
+      >
+        <h1 className="mb-3">Ignacio Altamirano</h1>
         <h2 className="mb-3 subtitle">{' < Front End Developer / >'}</h2>
-        <p className="">
+        <p>
           A passionate developer about creating interactive applications and
           build amazing products using web technologies.
         </p>
@@ -29,10 +35,16 @@ const Home = () => {
             </a>
           </Link>
         </div>
-        <a className="btn btn-contact" href="#contact">
+        <ScrollLink className="btn btn-contact" to="contact">
           Contact me
-        </a>
-      </div>
+        </ScrollLink>
+      </motion.div>
+      <button
+        className={openMenu ? 'd-none' : 'theme-btn'}
+        onClick={toggleDarkTheme}
+      >
+        {darkTheme ? <BsSunFill /> : <BsMoonFill />}
+      </button>
       <button
         onClick={() => setOpenMenu((prev) => !prev)}
         className={openMenu ? 'hamburger is-active' : 'hamburger'}
@@ -45,25 +57,50 @@ const Home = () => {
           openMenu && setOpenMenu(false);
         }}
       >
-        <Link href="#home">
-          <a className="mb-3" onClick={() => setOpenMenu(false)}>
-            Home
-          </a>
-        </Link>
-        <Link href="#about">
-          <a className="mb-3" onClick={() => setOpenMenu(false)}>
-            About
-          </a>
-        </Link>
-        <Link href="#projects">
-          <a className="mb-3" onClick={() => setOpenMenu(false)}>
-            {' '}
-            Projects
-          </a>
-        </Link>
-        <Link href="#contact">
-          <a onClick={() => setOpenMenu(false)}>Contact</a>
-        </Link>
+        <ScrollLink
+          to="home"
+          spy={true}
+          smooth={true}
+          offset={-10}
+          duration={100}
+          onClick={() => setOpenMenu(false)}
+          className="link"
+        >
+          Home
+        </ScrollLink>
+        <ScrollLink
+          to="about"
+          spy={true}
+          smooth={true}
+          offset={-10}
+          duration={100}
+          onClick={() => setOpenMenu(false)}
+          className="link"
+        >
+          About
+        </ScrollLink>
+        <ScrollLink
+          to="projects"
+          spy={true}
+          smooth={true}
+          offset={-10}
+          duration={100}
+          onClick={() => setOpenMenu(false)}
+          className="link"
+        >
+          Projects
+        </ScrollLink>
+        <ScrollLink
+          to="contact"
+          spy={true}
+          smooth={true}
+          offset={-10}
+          duration={100}
+          onClick={() => setOpenMenu(false)}
+          className="link"
+        >
+          Contact
+        </ScrollLink>
       </div>
     </section>
   );

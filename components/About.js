@@ -1,14 +1,28 @@
-import React from 'react';
+import { motion } from 'framer-motion';
+import { useRef } from 'react';
 
 const About = () => {
+  const scrollRef = useRef(null);
   return (
-    <section id="about" className="container mx-auto row">
-      <div className="d-flex align-items-center justify-content-start flex-column">
-        <h2 className="text-center mb-3 title">About</h2>
+    <section id="about" className="container mx-auto row" ref={scrollRef}>
+      <motion.div
+        initial={{ opacity: 0, y: '100%' }}
+        whileInView={{ opacity: 1, y: '0' }}
+        transition={{ type: 'spring', duration: 1 }}
+        viewport={{ once: true, scrollRef }}
+        className="d-flex borderalign-items-center text-center justify-content-start flex-column"
+      >
+        <h2 className="mb-3 title">About</h2>
         <h4>Get to know more about me</h4>
-      </div>
-      <div className="row">
-        <div className="col-md-6 d-flex justify-content-cente align-items-star flex-column py-4">
+      </motion.div>
+      <div className="row" ref={scrollRef}>
+        <motion.div
+          initial={{ opacity: 0, x: '-100%' }}
+          whileInView={{ opacity: 1, x: '0' }}
+          transition={{ type: 'spring', duration: 1 }}
+          viewport={{ once: true, scrollRef }}
+          className="col-md-6 d-flex justify-content-cente align-items-star flex-column py-4"
+        >
           <h3 className="text-center">Hello!</h3>
           <p className="my-3">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi,
@@ -20,9 +34,15 @@ const About = () => {
             nobis ad corporis itaque quod suscipit dolorum doloremque sapiente
             perferendis tenetur?
           </p>
-        </div>
+        </motion.div>
 
-        <div className="col-md-6 p-4">
+        <motion.div
+          initial={{ opacity: 0, x: '100%' }}
+          whileInView={{ opacity: 1, x: '0' }}
+          transition={{ type: 'spring', duration: 1 }}
+          viewport={{ once: true, scrollRef }}
+          className="col-md-6 p-4"
+        >
           <div className="text-center">
             <h3>My Skills</h3>
           </div>
@@ -56,7 +76,7 @@ const About = () => {
               <p className="text-uppercase">Next Js</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
